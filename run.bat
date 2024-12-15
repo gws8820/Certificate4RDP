@@ -16,14 +16,14 @@ echo Base64 (*.pem) 인증서를 PKCS#12 (*.pfx) 포맷으로 변환합니다.
 set /p password=비밀번호를 입력해주세요 : 
 echo.
 
-openssl pkcs12 -export -inkey "%CERTFILE%\privkey.pem" -in "%CERTFILE%\fullchain.pem" -out "%CERTFILE%\_.shilvister.net.pfx" -passout pass:"%password%"
+openssl pkcs12 -export -inkey "%CERTFILE%\privkey.pem" -in "%CERTFILE%\fullchain.pem" -out "%CERTFILE%\cert.pfx" -passout pass:"%password%"
 if %errorlevel% neq 0 goto SSLerror
 echo.
 echo pfx 인증서가 현재 디렉터리에 저장되었습니다. 
 echo.
 echo.
 
-for /f "tokens=*" %%a in ('certutil -f -p "%password%" -importpfx "%CERTFILE%\_.shilvister.net.pfx"') do (
+for /f "tokens=*" %%a in ('certutil -f -p "%password%" -importpfx "%CERTFILE%\cert.pfx"') do (
     echo %%a
     if "%%a"=="CertUtil: The specified network password is not correct." goto PWerror
 )
