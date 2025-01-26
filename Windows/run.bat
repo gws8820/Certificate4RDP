@@ -19,7 +19,7 @@ echo.
 openssl pkcs12 -export -inkey "%CERTFILE%\privkey.pem" -in "%CERTFILE%\fullchain.pem" -out "%CERTFILE%\cert.pfx" -passout pass:"%password%"
 if %errorlevel% neq 0 goto SSLerror
 echo.
-echo pfx 인증서가 현재 디렉터리에 저장되었습니다. 
+echo 인증서가 "%CERTFILE%"에 저장되었습니다.
 echo.
 echo.
 
@@ -28,7 +28,7 @@ for /f "tokens=*" %%a in ('certutil -f -p "%password%" -importpfx "%CERTFILE%\ce
     if "%%a"=="CertUtil: The specified network password is not correct." goto PWerror
 )
 echo.
-echo pfx 인증서가 성공적으로 설치되었습니다. 
+echo 인증서가 성공적으로 설치되었습니다. 
 echo.
 echo.
 

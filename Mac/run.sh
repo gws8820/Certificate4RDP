@@ -13,4 +13,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "PFX 인증서가 현재 디렉터리에 저장되었습니다."
+echo "인증서가 \"$CERTFILE/cert.pfx\"에 저장되었습니다."
